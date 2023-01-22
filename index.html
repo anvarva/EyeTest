@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Random Text</title>
+    <style>
+        body {
+            display: flex;
+            background-color: black;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #random-text {
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            text-align: center;
+        }
+
+        #LEVEL {
+            color: white;
+            font-size: 5em;
+            text-align:justify;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <h1 id="random-text"></h1>
+    <h1 id="LEVEL"></h1>
+
+    <script>
+    // JavaScript code to generate and display random text
+    const randomText = document.getElementById("random-text");
+    const clickCounter = document.getElementById("LEVEL");
+
+    let textSize = 20;
+    let clickCount = 0;
+    clickCounter.style.color = "white";
+    clickCounter.innerHTML = "LEVEL: 0";
+
+    function generateRandomText() {
+        randomText.innerHTML = generateRandomString(5)
+        clickCount++;
+        clickCounter.innerHTML = "LEVEL: " + clickCount;
+    }
+
+    function generateRandomString(length) {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let randomString = '';
+    for (let i = 0; i < length; i++) {
+        randomString += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return randomString;
+}
+
+    document.addEventListener("auxclick", function(event) {
+        if (event.which === 2) {
+            generateRandomText();
+                textSize = textSize*0.8;
+                randomText.style.fontSize = textSize + "em";
+        }
+    });
+
+    // generateRandomText();
+</script>
+
+
+</body>
+
+</html>
