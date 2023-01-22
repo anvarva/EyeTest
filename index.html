@@ -46,7 +46,7 @@
 
     function generateRandomText() {
         randomText.innerHTML = generateRandomString(5)
-        clickCount++;
+        
         clickCounter.innerHTML = "LEVEL: " + clickCount;
     }
 
@@ -59,18 +59,34 @@
     return randomString;
 }
 
-    document.addEventListener("auxclick", function(event) {
-        if (event.which === 2) {
-            generateRandomText();
-                textSize = textSize*0.8;
-                randomText.style.fontSize = textSize + "em";
-        }
-    });
+    // document.addEventListener("auxclick", function(event) {
+    //     if (event.which === 2) {
+    //         generateRandomText();
+    //             textSize = textSize*0.8;
+    //             randomText.style.fontSize = textSize + "em";
+    //     }
+    // });
 
     document.addEventListener("keydown", function(event) {
-    if (event.keyCode === 38) {
+    if (event.keyCode === 39) { //right arrow
+
         location.reload();
     }
+
+    if (event.keyCode === 40) { //up arrow
+        generateRandomText();
+            textSize = textSize/0.8;
+            clickCount--;
+            randomText.style.fontSize = textSize + "em";
+    }
+  
+    if (event.keyCode === 38) { //down arrow
+        generateRandomText();
+            textSize = textSize*0.8;
+            clickCount++;
+            randomText.style.fontSize = textSize + "em";
+    }
+
     });
 
     // generateRandomText();
